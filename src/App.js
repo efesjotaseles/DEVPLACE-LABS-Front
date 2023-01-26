@@ -1,22 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { NavbarLayout } from './Components/Navbar';
-import { PublicationForm } from "./Pages/PublicationForm";
-import { ProfilePage } from './Pages/ProfilePage';
+import Profile from "./pages/profile/Profile";
 
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<NavbarLayout/>}>
-            <Route path="/publication" element={<PublicationForm/>}/>
-            <Route path="/profile" element={<ProfilePage/>}/>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+  return <Profile/>;
 }
 
 export default App;
