@@ -3,6 +3,7 @@ import { PostList } from "../Components/PostList"
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import PublicationCard from "../Components/PublicationCard";
 
 export function ProfilePage() {
     return (
@@ -40,6 +41,7 @@ export function ProfilePage() {
                     </div>
                 </div>
             </div>
+            <PublicationCard />
         </>
     )
 }
