@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
@@ -6,6 +6,7 @@ function PublicationCard() {
   const cardText = "ACÁ VA EL TEXTO DE LA PUBLICACIÓN";
   const [favedState, setFavedState] = useState(false);
   const [likeValue, setLikeValue] = useState(0);
+  const [likeRadioChecked, setLikeRadioChecked] = useState(false);
 
   const likeRadios = [
     {
@@ -13,8 +14,11 @@ function PublicationCard() {
       value: 1,
       variant: "outline-success",
     },
-    { name: "Dislike", value: -1, variant: "outline-danger" },
+    { name: "Dislike", value: 2, variant: "outline-danger" },
   ];
+  useEffect(() => {
+    console.log(`Initial values: ${likeValue} | ${likeRadioChecked}`);
+  }, []);
 
   const handleFavChange = () => {
     setFavedState(!favedState);
@@ -22,9 +26,18 @@ function PublicationCard() {
   };
 
   //TODO fix to uncheck button on change
-  const handleLikeRadioChange = (likeRadioValue) => {
-    //setLikeValue(likeRadioValue);
-    likeValue === likeRadioValue ? setLikeValue(0) : setLikeValue(likeRadioValue);
+  const handleLikeRadioChange = (e) => {
+    const value = e.currentTarget.value;
+    console.log(`Values before if: ${likeValue} | ${likeRadioChecked}`);
+    if (value !== likeValue) {
+      setLikeValue(value);
+      setLikeRadioChecked(true);
+      console.log(`Values changes when value !== likeValue: ${likeValue} | ${likeRadioChecked}`);
+    } else {
+      setLikeValue(0);
+      setLikeRadioChecked(false);
+      console.log(`Values changes when value === likeValue: ${likeValue} | ${likeRadioChecked}`);
+    }
   };
 
   return (
@@ -40,11 +53,11 @@ function PublicationCard() {
                 type="radio"
                 variant={likeRadio.variant}
                 name="likeRadio"
-                value={likeRadio.value}
-                checked={likeValue === likeRadio.value}
-                onChange={() => {
-                  handleLikeRadioChange(likeRadio.value);
+                onClick={(e) => {
+                  handleLikeRadioChange(e);
                 }}
+                value={likeRadio.value}
+                checked={likeRadioChecked}
               >
                 {likeRadio.name}
               </ToggleButton>
