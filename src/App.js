@@ -1,32 +1,21 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavbarLayout } from "./Components/Navbar";
-import { PublicationForm } from "./Pages/PublicationForm";
-import { ProfilePage } from "./Pages/ProfilePage";
-import PublicationCard from "./Components/PublicationCard";
-import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { NavbarLayout } from './Components/Navbar';
+import { PublicationForm } from "./Pages/Profile/PublicationForm";
+import { ProfilePage } from './Pages/Profile/ProfilePage';
+import Login from './Pages/Login/LoginComponents/login';
+import SignUp from './Pages/Login/LoginComponents/singup';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicationCard
-                publication={{
-                  content: "Contenido pasado por props!",
-                  userId: "63d29efe9fdab0e31b2d7b0d",
-                  id: "63c99d1d62b6db5b8ad22fbc",
-                  favedBy: ["10101", "4444", "63d29efe9fdab0e31b2d7b0d"],
-                }}
-                requestingUser={{ userId: "63d29efe9fdab0e31b2d7b0d" }}
-              />
-            }
-          >
-            {/* <Route path="/publication" element={<PublicationForm/>}/>
-            <Route path="/profile" element={<ProfilePage/>}/> */}
+          <Route path="/" element={<NavbarLayout/>}>
+            <Route path="/publication" element={<PublicationForm/>}/>
+            <Route path="/profile" element={<ProfilePage/>}/>
+            <Route path="/sign-in" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
           </Route>
         </Routes>
       </BrowserRouter>
