@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import FriendListWidget from "../FriendList";
+import FriendListWidget from "../../components/FriendList";
 
 const HomePage = () => {
   

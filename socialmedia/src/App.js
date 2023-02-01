@@ -1,10 +1,10 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
-import Home from "./components/Home/index";
+import Home from "./Pages/Home/index";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import LoginPage from './components/LoginPage/login'
+import LoginPage from './Pages/LoginPage/login'
 
 
 

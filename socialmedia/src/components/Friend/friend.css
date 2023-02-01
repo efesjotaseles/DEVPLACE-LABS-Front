@@ -7,3 +7,14 @@
 .nick{
     margin-left: 20px;
 }
+.btn-circle.btn-xl {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    margin-left: 0.6rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-items: center;
+    object-fit: cover;
+}
+
