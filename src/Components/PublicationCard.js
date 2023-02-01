@@ -21,11 +21,18 @@ function PublicationCard(props) {
   useEffect(() => {
     setPublication(props.publication);
     getUserName(props.publication.userId);
-    //Chequeamos si userId hizo fav en la publicación
+    //Chequeamos si userId hizo FAV en la publicación
     props.publication.favedBy.includes(props.requestingUser.userId)
       ? setFavedState(true)
       : setFavedState(false);
-    //TODO chequear like/dislike
+    //Chequeamos si userId hizo LIKE en la publicación
+    props.publication.likedBy.includes(props.requestingUser.userId)
+      ? setLikeState(true)
+      : setLikeState(false);
+    //Chequeamos si userId hizo DISLIKE en la publicación
+    props.publication.dislikedBy.includes(props.requestingUser.userId)
+      ? setDislikeState(true)
+      : setDislikeState(false);
   }, []);
 
   function getUserName(id) {
@@ -90,6 +97,9 @@ function PublicationCard(props) {
     if (dislikeState) {
       setDislikeState(false);
     }
+    apiPublications.put(
+      `like/id/${publication.id}/userId/${props.requestingUser.userId}`
+    );
   }
 
   function handleDislikeChange() {
@@ -97,12 +107,15 @@ function PublicationCard(props) {
     if (likeState) {
       setLikeState(false);
     }
+    apiPublications.put(
+      `dislike/id/${publication.id}/userId/${props.requestingUser.userId}`
+    );
   }
 
   function handleFavChange() {
     setFavedState(!favedState);
     apiPublications.put(
-      `id/${publication.id}/userId/${props.requestingUser.userId}`
+      `fav/id/${publication.id}/userId/${props.requestingUser.userId}`
     );
   }
 
