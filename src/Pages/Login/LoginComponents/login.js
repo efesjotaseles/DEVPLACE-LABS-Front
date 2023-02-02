@@ -42,7 +42,7 @@ export default class Login extends Component {
     return (
       <div className=" color-overlay d-flex justify-content-center align-items-center m-3">
       <form onSubmit={this.handleSubmit}>
-        <h3>Sign In</h3>
+        <h3>Login</h3>
 
         <div className="mb-3">
           <label>Email address</label>
