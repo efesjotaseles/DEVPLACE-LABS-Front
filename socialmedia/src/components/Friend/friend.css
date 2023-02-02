@@ -17,4 +17,14 @@
     justify-items: center;
     object-fit: cover;
 }
+.picture{
+    border-style: dashed;
+    
 
+}
+.drop{
+    grid-column: span 4;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 1rem;
+}

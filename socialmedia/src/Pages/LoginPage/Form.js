@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from '../../store';
-
+import '../../components/Friend/friend.css'
 import { Formik, ErrorMessage, Field } from "formik";
 import * as yup from "yup";
-
+import Dropzone from "react-dropzone";
 
 
 const registerSchema = yup.object().shape({
@@ -43,12 +43,17 @@ const registerSchema = yup.object().shape({
   
     const register = async (values, onSubmitProps) => {
         console.log(values);
+        const formData = new FormData();
+        for (let value in values) {
+          formData.append(value, values[value]);
+        }
+        formData.append("picturePath", values.picture.name);
+
         const savedUserResponse = await fetch(
           "http://localhost:3030/auth/register",
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(values)
+            body: formData,
           }
         );
         const savedUser = await savedUserResponse.json();
@@ -101,7 +106,9 @@ const registerSchema = yup.object().shape({
       validationSchema={isLogin ? loginSchema : registerSchema}
       >
         {({
+          values,
           handleSubmit,
+          setFieldValue,
           resetForm,}) => (
           <form onSubmit={ handleSubmit } >
             {isRegister && (
@@ -132,7 +139,30 @@ const registerSchema = yup.object().shape({
                     />
                     <ErrorMessage name="lname" render={msg => <div className="error">{msg}</div>}/>
                     </div>
+                    <div className="drop mb-3">
+                      <Dropzone
+                      acceptedFiles=".jpg,.jpeg,.png"
+                      multiple={false}
+                      onDrop={(acceptedFiles) => setFieldValue("picture", acceptedFiles[0])}
+                      >
+                      {({ getRootProps, getInputProps }) => (
+                        <div className="picture" {...getRootProps()}>
+                          <input {...getInputProps()} />
+                          {!values.picture ? (
+                            <p>Add Picture Here</p>
+                          ) : (
+                            <div className="flexBetween">
+                              <p className="nick">{values.picture.name}</p>
+                              
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    </div>
+                    
                 </>
+
                 
             )}
 
