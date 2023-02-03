@@ -1,7 +1,5 @@
 import "./post.css";
 import {  MoreVert, Bookmark } from "@material-ui/icons";
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-//import { Users } from "../../dummyData";
 import { useState } from "react";
 
 import Button from 'react-bootstrap/Button';
