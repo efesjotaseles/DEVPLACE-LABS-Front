@@ -120,6 +120,7 @@ function PublicationCard(props) {
   }
 
   return (
+    <div className="container">
     <Card border="primary" bg="light" style={{ width: "40%" }}>
       <Card.Body style={{ minHeight: "20vh" }}>
         <Card.Text>{publication.content}</Card.Text>
@@ -139,6 +140,7 @@ function PublicationCard(props) {
         </Container>
       </Card.Footer>
     </Card>
+    </div>
   );
 }
 

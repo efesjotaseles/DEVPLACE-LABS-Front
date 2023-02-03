@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { NavbarLayout } from './Components/Navbar';
-import { PublicationForm } from "./Pages/Profile/PublicationForm";
-import { ProfilePage } from './Pages/Profile/ProfilePage';
+import Profile from './Pages/Profile/Profile';
 import Login from './Pages/Login/LoginComponents/login';
 import SignUp from './Pages/Login/LoginComponents/singup';
+import { Home } from './Pages/Home/home';
+import { PRUEBA } from './Pages/publicationCardPrueba';
 
 function App() {
   return (
@@ -12,10 +13,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavbarLayout/>}>
-            <Route path="/publication" element={<PublicationForm/>}/>
-            <Route path="/profile" element={<ProfilePage/>}/>
-            <Route path="/sign-in" element={<Login />} />
+            <Route path="/" element={<Home/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/log-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/PRUEBA" element={<PRUEBA />} />
           </Route>
         </Routes>
       </BrowserRouter>

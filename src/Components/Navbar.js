@@ -5,11 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-
 export const NavbarLayout = () => {
   return (
     <div>
-      <Navbar bg="ligth" variant="light" expand="lg" sticky="top">
+      <Navbar sticky="top" className="bg-white shadow-sm">
         <Container >
           <Navbar.Brand href="/">
             <img
@@ -27,27 +26,26 @@ export const NavbarLayout = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="/publication">+Post</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
-              <Nav.Link href="/sign-in">Login</Nav.Link>
+              <Nav.Link href="/profile">Your Profile</Nav.Link>
+              <Nav.Link href="/log-in">Login</Nav.Link>
               <Nav.Link href="/sign-up">Sign up</Nav.Link>
 
             </Nav>
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Search"
+                placeholder="Users or posts..."
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="light" className="nav-button" href="/login">Login</Button>
+              <Button variant="light" className="nav-button" href="/login">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       <Outlet />
-
+      
     </div>
   )
 }
