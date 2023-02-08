@@ -1,17 +1,57 @@
 import Post from "../post/Post";
 import Share from "../share/Share";
 import "./feed.css";
-import { Posts } from "../../dummyData.js";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default function Feed() {
+const apiPublications = axios.create({
+  baseURL: "http://localhost:3030/publications",
+});
+
+/**
+ *
+ * @param {*} props Incluir userIdArray, un array de userId que se quiere ver en el feed
+ * @returns
+ */
+export default function Feed(props) {
+  //useStates
+  const [publications, setPublications] = useState([]); 
+
+  const getPublications = () => {
+    const options = {
+      method: "POST",
+      url: `http://localhost:3030/publications/byUsers`,
+      headers: { "content-type": "application/json" },
+      data: props.userIdArray,
+    };
+    apiPublications
+      .request(options)
+      .then((response) => {
+        const responsePublications = response.data;
+        setPublications(responsePublications);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //onMount
+  useEffect(() => {
+    getPublications();
+  }, []);
+
+
   return (
-    <div className="feed">
-      <div className="feedWrapper">
-        <Share />
-        {Posts.map((p) => (
-          <Post key={p.id} post={p} />
-        ))}
-      </div>
-    </div>
+    <>
+      {publications.map((p, i) => {
+        return (
+          <Post
+            key={i}
+            publication={p}
+            requestingUser={{ userId: props.requestingUser.userId }}
+          />
+        );
+      })}
+    </>
   );
 }
