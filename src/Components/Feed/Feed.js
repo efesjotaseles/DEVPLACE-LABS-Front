@@ -15,7 +15,7 @@ const apiPublications = axios.create({
  */
 export default function Feed(props) {
   //useStates
-  const [publications, setPublications] = useState([]); 
+  const [publications, setPublications] = useState([]);
 
   const getPublications = () => {
     const options = {
@@ -40,18 +40,22 @@ export default function Feed(props) {
     getPublications();
   }, []);
 
-
   return (
     <>
-      {publications.map((p, i) => {
-        return (
-          <Post
-            key={i}
-            publication={p}
-            requestingUser={{ userId: props.requestingUser.userId }}
-          />
-        );
-      })}
+      <div className="feed">
+        <div className="feedWrapper">
+          <Share />
+          {publications.map((p, i) => {
+            return (
+              <Post
+                key={i}
+                publication={p}
+                requestingUser={{ userId: props.requestingUser.userId }}
+              />
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }
